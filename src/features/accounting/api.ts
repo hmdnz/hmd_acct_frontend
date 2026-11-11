@@ -15,19 +15,16 @@ import {
   VendorSubLedgerSummary,
 } from './types';
 
-// Detect Vite, Create React App, or fallback directly to local FastAPI server
+// Detect Vite or fallback directly to local FastAPI server
 const getBaseUrl = (): string => {
   // Vite (import.meta.env.VITE_API_URL)
-  if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) {
+  if (import.meta.env?.VITE_API_URL) {
     return `${import.meta.env.VITE_API_URL}/admin/accounting`;
-  }
-  // Create React App (process.env.REACT_APP_API_URL)
-  if (typeof process !== 'undefined' && process.env?.REACT_APP_API_URL) {
-    return `${process.env.REACT_APP_API_URL}/admin/accounting`;
   }
   // Local FastAPI default
   return 'http://127.0.0.1:8000/admin/accounting';
 };
+
 
 const API_BASE_URL = getBaseUrl();
 
